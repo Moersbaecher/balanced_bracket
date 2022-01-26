@@ -1,12 +1,14 @@
 let input = document.getElementById('input');
 let output = document.getElementById('output');
 let check = document.getElementById('check');
+let clear = document.getElementById('clear');
 const data = [];
+const fechamento = [];
 
 check.addEventListener('click', function(){
   
   let textField = input.value;
-  let message = undefined;
+  
 
    for (let i = 0; i < textField.length; i++){
        if(textField[i] === "(" ){ 
@@ -14,14 +16,17 @@ check.addEventListener('click', function(){
        } else if(textField[i] === ")" && data.length > 0){
             data.pop("(");
        } else if(textField[i] === ")" && data.length == 0 ){
-          message = "um ) ou mais";
+          fechamento.push(")")
      }
-   } console.log(data);
+   } 
+   console.log(data.length + '(');
+   console.log(fechamento.length + ')');
+   console.log(input.value);
 
-   if(message){
-     output.innerHTML = message;
+   if(fechamento.length > 0){
+     output.innerHTML = fechamento.length + " ) fora de posição";
    } else {
-        output.innerHTML = data.length + '<br>' + data;
+        output.innerHTML = data.length + " ( fora de posição";
    }
 
      while(data.length > 0) {
@@ -31,3 +36,6 @@ check.addEventListener('click', function(){
      return data;
 })
 
+clear.addEventListener('click', function(){
+     input.value = "";
+});
