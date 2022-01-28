@@ -12,21 +12,25 @@ check.addEventListener('click', function(){
 
    for (let i = 0; i < textField.length; i++){
        if(textField[i] === "(" ){ 
-            data.push( "(" );
+            data.push( "( na " + [i] + " posição" )
+            console.log('push');
        } else if(textField[i] === ")" && data.length > 0){
-            data.pop("(");
+            data.pop("(")
+            console.log('pop');
        } else if(textField[i] === ")" && data.length == 0 ){
-          fechamento.push(")")
+          fechamento.push(") na " + [i] + " posição")
+          console.log('sobrou' + [i]);
      }
+     console.log([i])
    } 
-   console.log(data.length + '(');
-   console.log(fechamento.length + ')');
-   console.log(input.value);
+   console.log(data);
+   console.log(fechamento);
+  // console.log(input.value);
 
    if(fechamento.length > 0){
-     output.innerHTML = fechamento.length + " ) fora de posição";
+     output.innerHTML = fechamento + "<br>" + data + "<br>"+ input.value;
    } else {
-        output.innerHTML = data.length + " ( fora de posição";
+        output.innerHTML = data + "<br>" + fechamento + "<br>" + input.value;
    }
 
      while(data.length > 0) {
@@ -38,4 +42,5 @@ check.addEventListener('click', function(){
 
 clear.addEventListener('click', function(){
      input.value = "";
+     data.pop();
 });
